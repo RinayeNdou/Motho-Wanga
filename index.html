@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Galaxy of Affection | Motho Wanga</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <audio id="backgroundMusic" loop>
+        <source src="music/love-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FIRST PAGE: ROMANTIC WELCOME -->
+    <section id="welcomePage">
+
+        <div class="cosmic-background"></div>
+        <div class="welcome-stars"></div>
+
+        <canvas id="welcomeHeart"></canvas>
+        <canvas id="welcomeShootingStars"></canvas>
+
+        <div class="welcome-content">
+
+            <p class="welcome-small">
+                A little universe, made just for you
+            </p>
+
+            <h1>
+                Happy Birthday,<br>
+                My Favorite Person
+            </h1>
+
+            <p class="welcome-message">
+                Somewhere in this endless universe, there is a little
+                world that belongs only to you...
+                <br><br>
+                And inside my heart, I've created a little place
+                filled with all the love I have for you.
+            </p>
+
+            <!-- FIRST: PLAY THE SONG -->
+            <button id="startMusicButton">
+                🎵 Play Our Song ❤️
+            </button>
+
+            <p id="musicInstruction">
+                Before you enter my heart, let our song play...
+            </p>
+
+            <!-- SECOND: ENTER AFTER MUSIC STARTS -->
+            <button id="enterGalaxy" hidden>
+                ♡ Step Inside My Heart ♡
+            </button>
+
+            <p class="welcome-signature">
+                Forever yours, Motho Wanga ❤️
+            </p>
+
+        </div>
+    </section>
+
+    <!-- MUSIC CONTROL -->
+    <button id="musicButton" hidden onclick="toggleMusic()">
+        🎵 Play Music
+    </button>
+
+    <!-- ORIGINAL BIRTHDAY EXPERIENCE -->
+    <main id="birthdayExperience" class="birthday-experience">
+
+        <canvas id="galaxy"></canvas>
+
+        <div id="messages"></div>
+
+        <canvas id="heart"></canvas>
+
+        <!-- BIRTHDAY QR CODE REVEAL -->
+        <section id="birthdayReveal">
+            <canvas id="finale"></canvas>
+        </section>
+
+    </main>
+
+    <!-- QR CODE LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- YOUR JAVASCRIPT -->
+    <script src="java/script.js"></script>
+
+</body>
+</html>

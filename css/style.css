@@ -1,0 +1,1164 @@
+/* ==========================================
+   GALAXY OF AFFECTION
+   Dedicated to Motho Wanga ❤️
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    position: relative;
+    background:
+        radial-gradient(
+            ellipse at 50% 70%,
+            #10101e 0%,
+            #05050b 45%,
+            #000 100%
+        );
+}
+
+/* ==========================================
+   GALAXY CANVAS
+========================================== */
+
+#galaxy {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* ==========================================
+   FLOATING MESSAGE CONTAINER
+========================================== */
+
+#messages {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    perspective: 900px;
+    perspective-origin: 50% 50%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.love-message {
+    position: absolute;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    translate: -50% -50%;
+    will-change: transform, opacity;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 12px #b8dfff,
+        0 0 25px #a7caff,
+        0 0 40px rgba(120, 180, 255, 0.5);
+}
+
+.love-message:nth-child(3n) {
+    color: #ffe0f0;
+    text-shadow:
+        0 0 8px #ff9dcc,
+        0 0 18px #ff70bd,
+        0 0 35px #ff4ca5;
+}
+
+.love-message:nth-child(3n + 1) {
+    color: #fff;
+}
+
+.love-message:nth-child(3n + 2) {
+    color: #c9eaff;
+    text-shadow:
+        0 0 8px #65cfff,
+        0 0 20px #65aaff;
+}
+
+/* ==========================================
+   CENTRAL PARTICLE HEART
+========================================== */
+
+#heart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* ==========================================
+   BIRTHDAY REVEAL
+========================================== */
+
+#birthdayReveal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 25px;
+
+    color: #fff;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #17112c 0%,
+            #080713 45%,
+            #000 100%
+        );
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 2s ease,
+        visibility 2s ease;
+}
+
+#birthdayReveal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#birthdayReveal h1 {
+    color: #e8c879;
+    font-size: 32px;
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 10px #e8c879,
+        0 0 25px #b68a3c,
+        0 0 45px #8b682c;
+}
+
+#birthdayReveal p {
+    color: #f5e8ca;
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 10px;
+}
+
+
+
+/* ==========================================
+   MUSIC
+========================================== */
+
+#backgroundMusic {
+    display: none;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+========================================== */
+
+@media screen and (max-width: 600px) {
+
+    .love-message {
+        font-size: 12px;
+    }
+
+    #heart {
+        width: 250px;
+        height: 250px;
+        top: 50%;
+    }
+
+    #birthdayReveal h1 {
+        font-size: 26px;
+    }
+
+    #birthdayReveal p {
+        font-size: 15px;
+    }
+
+}
+/* ==========================================
+   SOLAR SYSTEM + HEART PLANET
+========================================== */
+
+#solar {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#birthdayReveal h1,
+#birthdayReveal p {
+    position: relative;
+    z-index: 2;
+}
+
+#qrPlanet {
+    position: relative;
+    z-index: 2;
+    width: min(78vw, 400px);
+    aspect-ratio: 100 / 95;
+    margin: 25px auto;
+    isolation: isolate;
+    opacity: 0;
+}
+
+#qrPlanet svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter:
+        drop-shadow(0 0 18px rgba(255, 110, 200, 0.8))
+        drop-shadow(0 0 45px rgba(190, 90, 255, 0.6));
+}
+
+/* ring behind the heart planet */
+#qrPlanet::before {
+    content: "";
+    position: absolute;
+    left: -18%;
+    top: 36%;
+    width: 136%;
+    height: 30%;
+    border: 3px solid rgba(255, 190, 235, 0.75);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+    box-shadow: 0 0 14px rgba(255, 150, 220, 0.7);
+    z-index: -1;
+}
+
+/* QR code sits inside the heart */
+#qrcode {
+    position: absolute;
+    left: 29%;
+    top: 24%;
+    width: 42%;
+    aspect-ratio: 1 / 1;
+    padding: 5px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.7);
+    opacity: 0;
+}
+
+#qrcode img,
+#qrcode canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.scanText {
+    opacity: 0;
+}
+
+/* the heart planet flies in, then beats */
+#birthdayReveal.show #qrPlanet {
+    animation:
+        planetArrive 7s cubic-bezier(0.3, 0.1, 0.2, 1) 1.5s forwards,
+        planetBeat 1.6s ease-in-out 8.5s infinite;
+}
+
+#birthdayReveal.show #qrcode {
+    animation: qrAppear 1.5s ease 7.8s forwards;
+}
+
+#birthdayReveal.show .scanText {
+    animation: qrAppear 1.5s ease 8.2s forwards;
+}
+
+@keyframes planetArrive {
+    0% {
+        opacity: 0;
+        transform: translate(-25vw, -40vh) scale(0.04) rotate(-30deg);
+    }
+    12% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes planetBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.045); }
+}
+
+@keyframes qrAppear {
+    to { opacity: 1; }
+}
+/* ==========================================
+   HEART MADE OF QR SQUARES
+========================================== */
+
+#qrPlanet {
+    width: min(86vw, 65vh, 480px);
+    aspect-ratio: 100 / 96;
+}
+
+#qrMosaic,
+#qrCore {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#qrMosaic {
+    filter:
+        drop-shadow(0 0 14px rgba(255, 110, 200, 0.8))
+        drop-shadow(0 0 40px rgba(190, 90, 255, 0.55));
+}
+
+/* the real QR fades in after the planet arrives */
+#qrCore {
+    opacity: 0;
+    filter: drop-shadow(0 0 10px rgba(255, 200, 240, 0.9));
+}
+
+#birthdayReveal.show #qrCore {
+    animation: qrAppear 1.5s ease 7.8s forwards;
+}
+
+/* planet now flies in from the sun side */
+@keyframes planetArrive {
+    0% {
+        opacity: 0;
+        transform: translate(-42vw, -12vh) scale(0.04) rotate(-30deg);
+    }
+    12% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+}
+
+/* hearts pop out, then float up */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.2);
+        opacity: 0;
+    }
+    10% {
+        transform: translateY(-10px) scale(1.3);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-35px) scale(1);
+    }
+    100% {
+        transform: translateY(-170px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   FINALE PAGE
+========================================== */
+
+#birthdayReveal {
+    padding: 0;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #1c0714 0%,
+            #080209 55%,
+            #000 100%
+        );
+}
+
+#finale {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ==========================================
+   FIRST PAGE: ROMANTIC STARLIGHT WELCOME
+========================================== */
+
+#welcomePage {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    text-align: center;
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 40%,
+            rgba(67, 48, 105, 0.55) 0%,
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 20% 85%,
+            rgba(55, 35, 100, 0.35) 0%,
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            #03030d 0%,
+            #09091d 45%,
+            #160d29 100%
+        );
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+}
+
+/* Star layers */
+.welcome-stars,
+.welcome-stars::before,
+.welcome-stars::after {
+    position: absolute;
+    inset: -50%;
+    pointer-events: none;
+    content: "";
+}
+
+.welcome-stars {
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 100px, #fff, transparent),
+        radial-gradient(2px 2px at 160px 60px, #c9d8ff, transparent),
+        radial-gradient(1px 1px at 210px 180px, #fff, transparent),
+        radial-gradient(2px 2px at 280px 120px, #ffd6ed, transparent);
+
+    background-size: 320px 250px;
+    opacity: 0.75;
+    animation: starsDrift 65s linear infinite;
+}
+
+.welcome-stars::before {
+    background-image:
+        radial-gradient(1px 1px at 40px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 130px 40px, #d9e6ff, transparent),
+        radial-gradient(1px 1px at 200px 150px, #fff, transparent),
+        radial-gradient(2px 2px at 300px 220px, #ffd4ec, transparent);
+
+    background-size: 370px 290px;
+    opacity: 0.65;
+    animation: starsTwinkle 4s ease-in-out infinite alternate;
+}
+
+.welcome-stars::after {
+    background-image:
+        radial-gradient(1px 1px at 70px 60px, #fff, transparent),
+        radial-gradient(2px 2px at 180px 120px, #b9d7ff, transparent),
+        radial-gradient(1px 1px at 260px 200px, #fff, transparent);
+
+    background-size: 410px 330px;
+    opacity: 0.5;
+    animation: starsTwinkle 6s ease-in-out infinite alternate-reverse;
+}
+
+/* Welcome text */
+.welcome-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 750px;
+
+    color: #fff;
+    animation: welcomeAppear 2s ease both;
+}
+
+.welcome-small {
+    color: #d7c5ff;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+
+    text-shadow: 0 0 15px rgba(190, 160, 255, 0.8);
+}
+
+.welcome-content h1 {
+    color: #fff0fa;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(36px, 7vw, 68px);
+    line-height: 1.18;
+    margin-bottom: 28px;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 25px rgba(205, 160, 255, 0.8),
+        0 0 50px rgba(170, 110, 255, 0.5);
+}
+
+.welcome-message {
+    max-width: 570px;
+    margin: 0 auto 35px;
+
+    color: #e8e0f5;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(16px, 2.5vw, 20px);
+    line-height: 1.9;
+
+    text-shadow:
+        0 0 10px rgba(185, 165, 255, 0.45);
+}
+
+/* Romantic glowing button */
+#enterGalaxy {
+    display: inline-block;
+
+    padding: 16px 30px;
+    border: 1px solid rgba(255, 205, 240, 0.85);
+    border-radius: 50px;
+
+    color: #fff;
+    background: rgba(120, 70, 145, 0.25);
+
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 12px rgba(255, 160, 220, 0.45),
+        0 0 30px rgba(175, 120, 255, 0.3),
+        inset 0 0 15px rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(8px);
+
+    animation: buttonGlow 2.5s ease-in-out infinite;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#enterGalaxy:hover {
+    transform: scale(1.07);
+
+    background: rgba(175, 100, 180, 0.4);
+
+    box-shadow:
+        0 0 20px rgba(255, 160, 220, 0.8),
+        0 0 45px rgba(175, 120, 255, 0.6);
+}
+
+#enterGalaxy:active {
+    transform: scale(0.97);
+}
+
+.welcome-signature {
+    margin-top: 30px;
+    color: #d8c5ed;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+/* Welcome page animations */
+@keyframes starsDrift {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(250px);
+    }
+}
+
+@keyframes starsTwinkle {
+    from {
+        opacity: 0.25;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+}
+
+@keyframes welcomeAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 12px rgba(255, 160, 220, 0.4),
+            0 0 25px rgba(175, 120, 255, 0.25);
+    }
+
+    50% {
+        box-shadow:
+            0 0 22px rgba(255, 160, 220, 0.8),
+            0 0 45px rgba(175, 120, 255, 0.6);
+    }
+}
+
+/* Hide welcome page after the button is clicked */
+#welcomePage.welcome-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Small screens */
+@media screen and (max-width: 600px) {
+    #welcomePage {
+        padding: 22px;
+    }
+
+    .welcome-small {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        margin-bottom: 22px;
+    }
+
+    .welcome-content h1 {
+        font-size: 38px;
+        margin-bottom: 22px;
+    }
+
+    .welcome-message {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    #enterGalaxy {
+        padding: 15px 23px;
+        font-size: 13px;
+    }
+
+    .welcome-signature {
+        font-size: 12px;
+    }
+}
+
+
+/* ======================================
+   GALAXY PAGE: SHINING STARS
+====================================== */
+
+#galaxy {
+    filter: brightness(1.1);
+}
+
+/* ==========================================
+   BIG HEART: PUMPING STAR HEART
+========================================== */
+
+#heart {
+    transform: translate(-50%, -50%);
+    filter:
+        drop-shadow(0 0 8px #ffffff)
+        drop-shadow(0 0 18px #dca6ff)
+        drop-shadow(0 0 30px #ff8bd8);
+}
+
+/* ==========================================
+   WELCOME PAGE: UNIVERSE PARTICLE HEART
+========================================== */
+
+#welcomeHeart,
+#welcomeShootingStars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#welcomeHeart {
+    z-index: 1;
+    opacity: 0.9;
+}
+
+#welcomeShootingStars {
+    z-index: 2;
+}
+
+.welcome-content {
+    z-index: 3;
+    position: relative;
+    max-width: 850px;
+}
+
+/* Main universe message */
+
+.welcome-content h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(32px, 6vw, 65px);
+    color: #fff3fc;
+    line-height: 1.35;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #e9baff,
+        0 0 45px #b77cff;
+}
+
+/* Small handwritten cursive message */
+
+.handwritten {
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-style: italic;
+    font-size: clamp(21px, 3vw, 30px);
+    color: #ffd8ef;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 8px #ffb5e2,
+        0 0 20px rgba(255, 120, 210, 0.8);
+    margin-top: 15px;
+}
+
+/* Make sure the welcome stars remain behind everything */
+
+.welcome-stars {
+    z-index: 0;
+}
+
+/* Mobile heart and text spacing */
+
+@media screen and (max-width: 600px) {
+    .welcome-content h1 {
+        font-size: 35px;
+    }
+
+    .handwritten {
+        font-size: 23px;
+    }
+}
+
+
+
+/* ==========================================
+   DREAMY MIDNIGHT UNIVERSE - ENHANCED
+========================================== */
+
+#welcomePage {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+        radial-gradient(ellipse at 50% 50%,
+            #25205b 0%,
+            #11163d 35%,
+            #080d25 70%,
+            #01030c 100%);
+}
+
+/* Moving purple, blue and pink nebula */
+#welcomePage::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    z-index: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(ellipse at 20% 25%,
+            rgba(143, 65, 255, 0.48),
+            transparent 35%),
+
+        radial-gradient(ellipse at 80% 25%,
+            rgba(40, 110, 255, 0.40),
+            transparent 35%),
+
+        radial-gradient(ellipse at 65% 80%,
+            rgba(255, 65, 180, 0.32),
+            transparent 35%),
+
+        radial-gradient(ellipse at 25% 75%,
+            rgba(65, 90, 255, 0.38),
+            transparent 40%);
+
+    filter: blur(45px);
+    animation: nebulaDrift 16s ease-in-out infinite alternate;
+}
+
+/* Milky Way glow */
+#welcomePage::after {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 45%;
+    top: 28%;
+    left: -30%;
+    z-index: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(110, 140, 255, 0.08),
+            rgba(190, 160, 255, 0.35),
+            rgba(255, 190, 240, 0.28),
+            rgba(120, 150, 255, 0.16),
+            transparent
+        );
+
+    filter: blur(45px);
+    transform: rotate(-22deg);
+    animation: milkyWayGlow 8s ease-in-out infinite alternate;
+}
+
+/* Stars */
+.welcome-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Particle heart */
+#welcomeHeart {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Shooting stars */
+#welcomeShootingStars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Text stays above the effects */
+.welcome-content {
+    position: relative;
+    z-index: 4;
+}
+
+/* Nebula slowly moves */
+@keyframes nebulaDrift {
+    0% {
+        transform: translate(-2%, -2%) scale(1);
+    }
+
+    50% {
+        transform: translate(3%, 2%) scale(1.12);
+    }
+
+    100% {
+        transform: translate(-1%, 3%) scale(1.06);
+    }
+}
+
+/* Milky Way slowly shines */
+@keyframes milkyWayGlow {
+    0% {
+        opacity: 0.4;
+        transform: rotate(-22deg) translateX(-3%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(-18deg) translateX(3%);
+    }
+}
+
+/* Brighter welcome heading */
+.welcome-content h1 {
+    text-shadow:
+        0 0 10px #ffffff,
+        0 0 25px #d9aaff,
+        0 0 50px #a66cff,
+        0 0 75px rgba(150, 80, 255, 0.7);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    #welcomePage::after {
+        height: 30%;
+        top: 35%;
+    }
+}
+
+
+/* ==========================================
+   REAL COSMIC BACKGROUND IMAGE LAYERS
+========================================== */
+
+#welcomePage {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    isolation: isolate;
+
+    /* Fallback background */
+    background-color: #030514;
+}
+
+/* Space image layer */
+#welcomePage .cosmic-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(3, 5, 20, 0.25),
+            rgba(3, 5, 20, 0.45)
+        ),
+        url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=90");
+
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+}
+
+/* Purple and pink nebula glow */
+#welcomePage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 25%,
+            rgba(135, 65, 255, 0.28),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 80% 75%,
+            rgba(255, 70, 190, 0.22),
+            transparent 45%
+        );
+
+    animation: cosmicGlow 8s ease-in-out infinite alternate;
+}
+
+/* Star field */
+.welcome-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Particle heart */
+#welcomeHeart {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Shooting stars */
+#welcomeShootingStars {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Text */
+.welcome-content {
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes cosmicGlow {
+    from {
+        opacity: 0.55;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+
+/* Keep hidden buttons hidden, even when other CSS styles buttons */
+#enterGalaxy[hidden],
+#musicButton[hidden] {
+    display: none !important;
+}
+
+/* Play Our Song button */
+#startMusicButton {
+    display: inline-block;
+    padding: 16px 32px;
+    margin: 12px;
+    border: 1px solid rgba(255, 190, 235, 0.9);
+    border-radius: 50px;
+    color: white;
+    background: rgba(160, 70, 170, 0.35);
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow:
+        0 0 15px rgba(255, 130, 220, 0.6),
+        0 0 35px rgba(170, 100, 255, 0.4);
+    animation: buttonGlow 2.5s ease-in-out infinite;
+}
+
+#startMusicButton:hover {
+    transform: scale(1.06);
+}
+
+#musicInstruction {
+    color: #e8d5ff;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    margin: 12px 0 20px;
+}
+
+
+/* =========================================
+   INTERACTIVE GALAXY STYLING
+========================================= */
+
+#birthdayExperience.galaxy-explorable {
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#birthdayExperience.galaxy-explorable.is-dragging {
+    cursor: grabbing;
+}
+
+/* Smooth movement without replacing existing animations */
+#galaxy,
+#messages,
+#heart {
+    will-change: translate;
+}
+
+/* Messages discovered by touching the universe */
+.discovery-message {
+    position: absolute;
+    z-index: 50;
+
+    transform: translate(-50%, -50%);
+
+    max-width: 260px;
+    width: max-content;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(255, 190, 255, 0.65);
+    border-radius: 30px;
+
+    background: rgba(35, 10, 65, 0.88);
+
+    color: #fff0ff;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+
+    box-shadow:
+        0 0 12px rgba(255, 100, 220, 0.8),
+        0 0 28px rgba(150, 80, 255, 0.5);
+
+    pointer-events: none;
+
+    animation: discoveryMessageFloat 3.8s ease forwards;
+}
+
+@keyframes discoveryMessageFloat {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -15px) scale(1);
+    }
+
+    75% {
+        opacity: 1;
+        transform: translate(-50%, -85px) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -120px) scale(0.85);
+    }
+}
+
+/* Interactive galaxy positioning */
+#birthdayExperience {
+    position: relative;
+}
+
+/* Keep discovered messages above the galaxy */
+.discovery-message {
+    position: fixed;
+    pointer-events: none;
+}

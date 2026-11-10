@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Motho Wanga ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(ellipse at bottom, #17102e 0%, #080514 65%, #020108 100%);
+            color: white;
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Universe background */
+        #stars {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px white, 0 0 15px #c9a7ff;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.2;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* Shooting star */
+        .shooting-star {
+            position: fixed;
+            top: 15%;
+            left: 100%;
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, white);
+            transform: rotate(-30deg);
+            animation: shoot 7s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes shoot {
+            0% {
+                left: 110%;
+                top: 15%;
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            20% {
+                left: -30%;
+                top: 55%;
+                opacity: 0;
+            }
+            100% {
+                left: -30%;
+                opacity: 0;
+            }
+        }
+
+        /* Heading */
+        .heading {
+            position: fixed;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 5;
+            padding: 10px;
+            color: #f6d6ff;
+            text-shadow: 0 0 15px #d88aff;
+            letter-spacing: 3px;
+            font-size: 17px;
+        }
+
+        /* Scrolling letter */
+        .letter-window {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 2;
+            mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 12%,
+                black 85%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 12%,
+                black 85%,
+                transparent 100%
+            );
+        }
+
+        .letter-content {
+            position: absolute;
+            width: 100%;
+            padding: 0 22px;
+            text-align: center;
+            top: 100%;
+            animation: scrollLetter 100s linear forwards;
+        }
+
+        @keyframes scrollLetter {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-180%);
+            }
+        }
+
+        .letter-card {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 35px 25px;
+            background: rgba(30, 16, 55, 0.55);
+            border: 1px solid rgba(225, 170, 255, 0.35);
+            border-radius: 25px;
+            box-shadow: 0 0 30px rgba(185, 100, 255, 0.18);
+            backdrop-filter: blur(8px);
+        }
+
+        .heart {
+            font-size: 45px;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 0 15px #ff73bd);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        h1 {
+            color: #ffd2f3;
+            font-size: clamp(27px, 6vw, 42px);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px #d76aff;
+        }
+
+        .message {
+            font-size: 19px;
+            line-height: 2;
+            color: #f5eafa;
+            white-space: pre-line;
+        }
+
+        .closing {
+            margin-top: 40px;
+            color: #ffbde9;
+            font-size: 25px;
+            line-height: 1.8;
+            text-shadow: 0 0 15px #e56cff;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 25px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        button {
+            background: rgba(157, 79, 190, 0.35);
+            border: 1px solid #e3a6ff;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 0 15px rgba(202, 115, 255, 0.3);
+        }
+
+        button:hover {
+            background: #a64dcc;
+        }
+
+        .footer {
+            margin-top: 35px;
+            color: #d9a5ff;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        @media(max-width: 600px) {
+            .letter-content {
+                padding: 0 14px;
+            }
+
+            .letter-card {
+                padding: 28px 18px;
+            }
+
+            .message {
+                font-size: 17px;
+                line-height: 1.9;
+            }
+
+            .heading {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="stars"></div>
+    <div class="shooting-star"></div>
+
+    <div class="heading">
+        ✨ A MESSAGE WRITTEN IN THE STARS ✨
+    </div>
+
+    <div class="letter-window">
+        <div class="letter-content" id="letter">
+
+            <div class="letter-card">
+
+                <div class="heart">❤️</div>
+
+                <h1>Happy Birthday, Motho Wanga</h1>
+
+                <div class="message">
+
+Happy Birthday, Nonjabulo ❤️
+
+Happy Birthday to the most beautiful girl in my world. ❤️
+
+My love, today is your day, and I hope you know just how special you are to me. I wish you a lifetime of happiness, beautiful memories, answered prayers, endless laughter and all the beautiful things your heart desires.
+
+If there’s one thing I wish for you, it’s that life is always gentle with you, that you never lose the beautiful person you are, and that you never have to question how loved, appreciated and treasured you are.
+
+Sometimes I sit and think about how incredible it is that, out of approximately 8 billion people in this world, somehow, I found my person.
+
+I found you.
+
+And I don’t mean that lightly.
+
+I found the person I want to hold hands with in a world that can sometimes be terrifying, unpredictable and dangerous. A world where we have very little control over so many things. We don’t know what tomorrow holds, what challenges we’ll face or what life might throw our way.
+
+But there’s something incredibly beautiful about knowing that we don’t have to face it all alone.
+
+I want to be the person who holds your hand when things get difficult, and I want you to hold mine too. I want us to look out for each other, to stand beside each other through the suffering, the uncertainty and the difficult seasons. When life gets overwhelming, we’ll remind each other that we’re a team. We’ll figure things out together, one day at a time.
+
+And when life is beautiful, I want to experience that beauty with you too.
+
+Because I think that’s what makes happiness even more special. It’s not just experiencing beautiful things; it’s having someone you love beside you to share those moments with. The joy becomes that much sweeter because we get to experience it together.
+
+And perhaps the pain becomes a little softer because there’s someone to hold onto when everything feels heavy.
+
+I want us to be that for each other.
+
+I want us to grow together, learn together and become better people together. I know I don’t have everything figured out, and neither should you have to. There are things about ourselves that we simply cannot see on our own. We all have blind spots, things we overlook, habits we don’t recognise and areas where we still need to grow.
+
+And I think one of the greatest gifts two people can give each other is the ability to see those things with love.
+
+I want you to be able to tell me when I’m wrong, challenge me when I need it and help me see the things I might not see in myself. And I want to do the same for you. Not to criticise one another, not to win arguments, but because we genuinely want the best for each other.
+
+I want us to build the kind of trust where we know that when the other person speaks, it comes from a place of love, honesty and a genuine desire for our long-term happiness.
+
+What a beautiful thing that is.
+
+To have someone who has your back. Someone you can trust. Someone who celebrates your victories, sits with you through your difficult moments and still chooses to grow alongside you.
+
+And I hope we never take that for granted.
+
+My love, I don’t promise that every day will be perfect. I cannot promise that we’ll never disagree, never misunderstand each other or never have difficult moments. But I hope we always remember that we’re on the same side.
+
+I hope we keep choosing patience, understanding, forgiveness and each other.
+
+I hope that years from now, we can look back at the people we were when we started and smile at how much we’ve grown, how much we’ve learned and how many beautiful memories we’ve created.
+
+And if I could choose one thing over and over again, among all the people in this world, I would still want to find you.
+
+Because out of 8 billion people, I found my person. And I hope you know that I don’t ever want to stop choosing her.
+
+Happy Birthday, my beautiful girl.
+
+Thank you for being you. Thank you for the laughter, the memories, the little moments, the love and the opportunity to experience life with you.
+
+May this new chapter bring you closer to everything you’ve ever dreamed of.
+
+I love you, Motho Wanga. More than these words could ever fully explain.
+
+Here’s to us, to growing, to discovering, to holding hands through the unknown, and to a lifetime of having someone to come home to in each other.
+
+Forever grateful that my paths crossed with yours.
+
+With all my love. ❤️
+
+                </div>
+
+                <div class="closing">
+                    You are my favourite universe. ❤️
+                    <br><br>
+                    Forever and Always. 💍
+                </div>
+
+                <div class="footer">
+                    MADE WITH LOVE, JUST FOR YOU ✨
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="toggleScroll()" id="pauseBtn">
+            ⏸ Pause
+        </button>
+
+        <button onclick="restartScroll()">
+            ↻ Replay
+        </button>
+    </div>
+
+    <script>
+
+        // Generate stars
+        const stars = document.getElementById("stars");
+
+        for (let i = 0; i < 140; i++) {
+            const star = document.createElement("div");
+
+            star.className = "star";
+
+            const size = Math.random() * 3 + 1;
+
+            star.style.width = size + "px";
+            star.style.height = size + "px";
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+
+            star.style.animationDelay = Math.random() * 3 + "s";
+            star.style.animationDuration =
+                (Math.random() * 3 + 1) + "s";
+
+            stars.appendChild(star);
+        }
+
+        // Pause and resume scrolling
+        const letter = document.getElementById("letter");
+        const pauseBtn = document.getElementById("pauseBtn");
+
+        let paused = false;
+
+        function toggleScroll() {
+
+            paused = !paused;
+
+            letter.style.animationPlayState =
+                paused ? "paused" : "running";
+
+            pauseBtn.innerHTML =
+                paused ? "▶ Resume" : "⏸ Pause";
+        }
+
+        // Replay the letter
+        function restartScroll() {
+
+            letter.style.animation = "none";
+
+            letter.offsetHeight;
+
+            letter.style.animation =
+                "scrollLetter 100s linear forwards";
+
+            letter.style.animationPlayState = "running";
+
+            paused = false;
+
+            pauseBtn.innerHTML = "⏸ Pause";
+        }
+
+    </script>
+
+</body>
+</html>
